@@ -1,4 +1,4 @@
-import { IncomeCategory, OutcomeCategory } from './category.enums';
+import { IncomeCategory, OutcomeCategory } from './categories.enums';
 
 export enum FinancialTransactionType {
     Income = 'income',
