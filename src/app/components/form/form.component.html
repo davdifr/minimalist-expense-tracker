@@ -17,11 +17,8 @@
     <div>
         <label for="type">Type</label>
         <select id="type" formControlName="type">
-            @for (type of types; track $index) {
-            <option [value]="type">
-                {{ type }}
-            </option>
-            }
+            <option value="income">Income</option>
+            <option value="outcome">Outcome</option>
         </select>
     </div>
 

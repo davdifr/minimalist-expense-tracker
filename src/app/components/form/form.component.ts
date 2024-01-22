@@ -1,8 +1,5 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
-import {
-    FinancialTransaction,
-    FinancialTransactionType,
-} from '../../models/transactions.models';
+import { FinancialTransaction } from '../../models/transactions.models';
 import {
     FormBuilder,
     FormGroup,
@@ -23,9 +20,6 @@ export class FormComponent {
     #fb = inject(FormBuilder);
     form: FormGroup;
 
-    // enums
-    types = Object.values(FinancialTransactionType);
-
     constructor() {
         const formattedDate = new Date().toISOString().slice(0, 10);
 
@@ -33,7 +27,7 @@ export class FormComponent {
             amount: [0, [Validators.required, Validators.min(0.01)]],
             date: [formattedDate, Validators.required],
             description: [],
-            type: [FinancialTransactionType.Income, Validators.required],
+            type: ['outcome', Validators.required],
             // category: [],
         });
     }

@@ -1,8 +1,8 @@
 import { Injectable, computed, signal } from '@angular/core';
 import {
     FinancialTransaction,
-    FinancialTransactionType,
-    operation,
+    TransactionType,
+    TransactionOperation,
 } from '../models/transactions.models';
 
 @Injectable({
@@ -32,13 +32,13 @@ export class TransactionService {
     }
 
     private update(
-        type: FinancialTransactionType,
+        type: TransactionType,
         amount: number,
-        operation: operation
+        operation: TransactionOperation
     ) {
         const transactionUpdates = {
-            [FinancialTransactionType.Income]: this.incomes,
-            [FinancialTransactionType.Outcome]: this.outcomes,
+            ['income']: this.incomes,
+            ['outcome']: this.outcomes,
         };
 
         transactionUpdates[type].update((current) =>

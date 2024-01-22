@@ -1,11 +1,7 @@
 import { IncomeCategory, OutcomeCategory } from './categories.enums';
 
-export enum FinancialTransactionType {
-    Income = 'income',
-    Outcome = 'outcome',
-}
-
-export type operation = 'add' | 'remove';
+export type TransactionType = 'income' | 'outcome';
+export type TransactionOperation = 'add' | 'remove';
 
 export interface FinancialItemBase {
     id: string;
@@ -15,12 +11,12 @@ export interface FinancialItemBase {
 }
 
 export interface IncomeTransaction extends FinancialItemBase {
-    type: FinancialTransactionType.Income;
+    type: 'income';
     category?: IncomeCategory;
 }
 
 export interface OutcomeTransaction extends FinancialItemBase {
-    type: FinancialTransactionType.Outcome;
+    type: 'outcome';
     category?: OutcomeCategory;
 }
 
