@@ -1,0 +1,29 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="amount">Amount</label>
+        <input id="amount" type="number" formControlName="amount" />
+    </div>
+
+    <div>
+        <label for="date">Date</label>
+        <input id="date" type="date" formControlName="date" />
+    </div>
+
+    <div>
+        <label for="description">Description</label>
+        <input id="description" type="text" formControlName="description" />
+    </div>
+
+    <div>
+        <label for="type">Type</label>
+        <select id="type" formControlName="type">
+            @for (type of types; track $index) {
+            <option [value]="type">
+                {{ type }}
+            </option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Add</button>
+</form>
