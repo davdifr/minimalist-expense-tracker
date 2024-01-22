@@ -5,6 +5,8 @@ export enum FinancialTransactionType {
     Outcome = 'outcome',
 }
 
+export type operation = 'add' | 'remove';
+
 export interface FinancialItemBase {
     id: string;
     amount: number;
