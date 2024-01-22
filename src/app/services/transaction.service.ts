@@ -1,9 +1,9 @@
 import { Injectable, computed, signal } from '@angular/core';
+import { FinancialTransaction } from '../models/transactions.models';
 import {
-    FinancialTransaction,
-    TransactionType,
     TransactionOperation,
-} from '../models/transactions.models';
+    TransactionType,
+} from '../models/transactions.enums';
 
 @Injectable({
     providedIn: 'root',
@@ -20,7 +20,11 @@ export class TransactionService {
             transaction,
         ]);
 
-        this.update(transaction.type, transaction.amount, 'add');
+        this.update(
+            transaction.type,
+            transaction.amount,
+            TransactionOperation.Add
+        );
     }
 
     remove(transaction: FinancialTransaction) {
@@ -28,7 +32,11 @@ export class TransactionService {
             transactions.filter((t) => t.id !== transaction.id)
         );
 
-        this.update(transaction.type, transaction.amount, 'remove');
+        this.update(
+            transaction.type,
+            transaction.amount,
+            TransactionOperation.Remove
+        );
     }
 
     private update(
@@ -37,12 +45,14 @@ export class TransactionService {
         operation: TransactionOperation
     ) {
         const transactionUpdates = {
-            ['income']: this.incomes,
-            ['outcome']: this.outcomes,
+            [TransactionType.Income]: this.incomes,
+            [TransactionType.Outcome]: this.outcomes,
         };
 
         transactionUpdates[type].update((current) =>
-            operation === 'add' ? current + amount : current - amount
+            operation === TransactionOperation.Add
+                ? current + amount
+                : current - amount
         );
     }
 }
