@@ -42,7 +42,7 @@ export class TransactionService {
         );
     }
 
-    loadTransactions(transactions: TransactionIOData) {
+    loadTransactionsAndSetTotals(transactions: TransactionIOData) {
         this.transactionList.set(transactions.transactions);
         this.totalIncome.set(transactions.totals.income);
         this.totalOutcome.set(transactions.totals.outcome);

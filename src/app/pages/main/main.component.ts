@@ -27,7 +27,9 @@ import { ImportComponent } from '../../components/import/import.component';
             [totalOutcome]="transactionService.totalOutcome()"
         />
         <app-import
-            (transactionsUploaded)="transactionService.loadTransactions($event)"
+            (transactionsUploaded)="
+                transactionService.loadTransactionsAndSetTotals($event)
+            "
         />
         <app-form (transaction)="transactionService.addTransaction($event)" />
         <app-list
