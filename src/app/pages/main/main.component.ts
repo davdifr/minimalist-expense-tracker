@@ -2,18 +2,23 @@ import { Component, inject } from '@angular/core';
 import { TransactionService } from '../../services/transaction.service';
 import { SummaryComponent } from '../../components/summary/summary.component';
 import { FormComponent } from '../../components/form/form.component';
+import ListComponent from '../../components/list/list.component';
 
 @Component({
     selector: 'app-main',
     standalone: true,
-    imports: [SummaryComponent, FormComponent],
+    imports: [SummaryComponent, FormComponent, ListComponent],
     template: `<app-summary
-            [incomes]="ts.incomes()"
-            [outcomes]="ts.outcomes()"
-            [total]="ts.total()"
+            [totalIncome]="transactionService.totalIncome()"
+            [totalOutcome]="transactionService.totalOutcome()"
+            [netTotal]="transactionService.netTotal()"
         />
-        <app-form (transaction)="ts.add($event)" />`,
+        <app-form (transaction)="transactionService.addTransaction($event)" />
+        <app-list
+            [transactionsList]="transactionService.transactionList()"
+            (transactionToDelete)="transactionService.removeTransaction($event)"
+        />`,
 })
 export default class MainComponent {
-    ts = inject(TransactionService);
+    transactionService = inject(TransactionService);
 }

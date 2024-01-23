@@ -9,50 +9,50 @@ import {
     providedIn: 'root',
 })
 export class TransactionService {
-    transactions = signal<FinancialTransaction[]>([]);
-    incomes = signal<number>(0);
-    outcomes = signal<number>(0);
-    total = computed(() => this.incomes() - this.outcomes());
+    transactionList = signal<FinancialTransaction[]>([]);
+    totalIncome = signal<number>(0);
+    totalOutcome = signal<number>(0);
+    netTotal = computed(() => this.totalIncome() - this.totalOutcome());
 
-    add(transaction: FinancialTransaction) {
-        this.transactions.update((transactions) => [
-            ...transactions,
+    addTransaction(transaction: FinancialTransaction) {
+        this.transactionList.update((existingTransactions) => [
+            ...existingTransactions,
             transaction,
         ]);
 
-        this.update(
+        this.updateTotals(
             transaction.type,
             transaction.amount,
             TransactionOperation.Add
         );
     }
 
-    remove(transaction: FinancialTransaction) {
-        this.transactions.update((transactions) =>
-            transactions.filter((t) => t.id !== transaction.id)
+    removeTransaction(transaction: FinancialTransaction) {
+        this.transactionList.update((existingTransactions) =>
+            existingTransactions.filter((t) => t.id !== transaction.id)
         );
 
-        this.update(
+        this.updateTotals(
             transaction.type,
             transaction.amount,
             TransactionOperation.Remove
         );
     }
 
-    private update(
-        type: TransactionType,
-        amount: number,
+    private updateTotals(
+        transactionType: TransactionType,
+        transactionAmount: number,
         operation: TransactionOperation
     ) {
-        const transactionUpdates = {
-            [TransactionType.Income]: this.incomes,
-            [TransactionType.Outcome]: this.outcomes,
+        const totalUpdates = {
+            [TransactionType.Income]: this.totalIncome,
+            [TransactionType.Outcome]: this.totalOutcome,
         };
 
-        transactionUpdates[type].update((current) =>
+        totalUpdates[transactionType].update((currentTotal) =>
             operation === TransactionOperation.Add
-                ? current + amount
-                : current - amount
+                ? currentTotal + transactionAmount
+                : currentTotal - transactionAmount
         );
     }
 }

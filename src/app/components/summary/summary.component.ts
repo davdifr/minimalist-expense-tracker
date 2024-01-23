@@ -4,10 +4,10 @@ import { Component, input } from '@angular/core';
     selector: 'app-summary',
     standalone: true,
     imports: [],
-    template: `{{ incomes() }} | {{ outcomes() }} | {{ total() }}`,
+    template: `{{ totalIncome() }} | {{ totalOutcome() }} | {{ netTotal() }}`,
 })
 export class SummaryComponent {
-    incomes = input<number>();
-    outcomes = input<number>();
-    total = input<number>();
+    totalIncome = input<number>();
+    totalOutcome = input<number>();
+    netTotal = input<number>();
 }

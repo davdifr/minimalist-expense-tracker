@@ -19,9 +19,9 @@ export class FormComponent {
     @Output() transaction = new EventEmitter<FinancialTransaction>();
 
     #fb = inject(FormBuilder);
-    form: FormGroup;
-
     #formattedDate = new Date().toISOString().slice(0, 10);
+
+    form: FormGroup;
 
     constructor() {
         this.form = this.#fb.group({
@@ -33,7 +33,7 @@ export class FormComponent {
         });
     }
 
-    private resetAndInitializeDateInForm() {
+    private resetAndInitializeDateInForm(): void {
         this.form.reset();
         this.form.patchValue({ date: this.#formattedDate });
     }
@@ -41,7 +41,6 @@ export class FormComponent {
     private createAndEmitNewTransaction(): void {
         if (this.form.invalid) return;
         const { amount, date, description, type } = this.form.value;
-
         const newTransaction = {
             id: Date.now().toString(),
             amount,
@@ -53,7 +52,7 @@ export class FormComponent {
         this.transaction.emit(newTransaction);
     }
 
-    onSubmit() {
+    onSubmit(): void {
         this.createAndEmitNewTransaction();
         this.resetAndInitializeDateInForm();
     }
