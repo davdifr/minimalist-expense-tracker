@@ -22,7 +22,7 @@ import { ImportComponent } from '../../components/import/import.component';
             [netTotal]="transactionService.netTotal()"
         />
         <app-export
-            [transactionList]="transactionService.transactionList()"
+            [transactionsList]="transactionService.transactionsList()"
             [totalIncome]="transactionService.totalIncome()"
             [totalOutcome]="transactionService.totalOutcome()"
         />
@@ -33,7 +33,7 @@ import { ImportComponent } from '../../components/import/import.component';
         />
         <app-form (transaction)="transactionService.addTransaction($event)" />
         <app-list
-            [transactionsList]="transactionService.transactionList()"
+            [transactionsList]="transactionService.transactionsList()"
             (transactionToDelete)="transactionService.deleteTransaction($event)"
         /> `,
 })

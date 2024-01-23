@@ -9,13 +9,13 @@ import {
     standalone: true,
     template: `<button
         (click)="downloadTransactions()"
-        [disabled]="transactionList().length === 0"
+        [disabled]="transactionsList().length === 0"
     >
         Export
     </button>`,
 })
 export default class ExportComponent {
-    transactionList = input.required<FinancialTransaction[]>();
+    transactionsList = input.required<FinancialTransaction[]>();
     totalIncome = input.required<number>();
     totalOutcome = input.required<number>();
 
@@ -30,7 +30,7 @@ export default class ExportComponent {
 
     private createTransactionIOData(): TransactionIOData {
         return {
-            transactions: this.transactionList(),
+            transactions: this.transactionsList(),
             totals: {
                 income: this.totalIncome(),
                 outcome: this.totalOutcome(),

@@ -12,13 +12,13 @@ import {
     providedIn: 'root',
 })
 export class TransactionService {
-    transactionList = signal<FinancialTransaction[]>([]);
+    transactionsList = signal<FinancialTransaction[]>([]);
     totalIncome = signal<number>(0);
     totalOutcome = signal<number>(0);
     netTotal = computed(() => this.totalIncome() - this.totalOutcome());
 
     addTransaction(transaction: FinancialTransaction) {
-        this.transactionList.update((existingTransactions) => [
+        this.transactionsList.update((existingTransactions) => [
             ...existingTransactions,
             transaction,
         ]);
@@ -31,7 +31,7 @@ export class TransactionService {
     }
 
     deleteTransaction(transaction: FinancialTransaction) {
-        this.transactionList.update((existingTransactions) =>
+        this.transactionsList.update((existingTransactions) =>
             existingTransactions.filter((t) => t.id !== transaction.id)
         );
 
@@ -43,7 +43,7 @@ export class TransactionService {
     }
 
     loadTransactionsAndSetTotals(data: TransactionIOData) {
-        this.transactionList.set(data.transactions);
+        this.transactionsList.set(data.transactions);
         this.totalIncome.set(data.totals.income);
         this.totalOutcome.set(data.totals.outcome);
     }

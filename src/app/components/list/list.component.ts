@@ -1,14 +1,15 @@
 import { Component, EventEmitter, Output, input } from '@angular/core';
 import { FinancialTransaction } from '../../models/transactions.models';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
     selector: 'app-list',
     standalone: true,
-    imports: [],
+    imports: [CurrencyPipe],
     template: `
         @for (transaction of transactionsList(); track $index) {
         <div>
-            {{ transaction.amount }}
+            {{ transaction.amount | currency : 'EUR' }}
             {{ transaction.type }}
             {{ transaction.description }}
             {{ transaction.date }}
