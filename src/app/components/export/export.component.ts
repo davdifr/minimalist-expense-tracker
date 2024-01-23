@@ -7,7 +7,12 @@ import {
 @Component({
     selector: 'app-export',
     standalone: true,
-    template: `<button (click)="downloadTransactions()">Export</button>`,
+    template: `<button
+        (click)="downloadTransactions()"
+        [disabled]="transactionList().length === 0"
+    >
+        Export
+    </button>`,
 })
 export default class ExportComponent {
     transactionList = input.required<FinancialTransaction[]>();
