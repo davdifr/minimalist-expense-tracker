@@ -35,7 +35,10 @@ export class FormComponent {
 
     private resetAndInitializeDateInForm(): void {
         this.form.reset();
-        this.form.patchValue({ date: this.#formattedDate });
+        this.form.patchValue({
+            date: this.#formattedDate,
+            type: TransactionType.Outcome,
+        });
     }
 
     private createAndEmitNewTransaction(): void {
