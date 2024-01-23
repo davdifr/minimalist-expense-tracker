@@ -30,7 +30,7 @@ export class TransactionService {
         );
     }
 
-    removeTransaction(transaction: FinancialTransaction) {
+    deleteTransaction(transaction: FinancialTransaction) {
         this.transactionList.update((existingTransactions) =>
             existingTransactions.filter((t) => t.id !== transaction.id)
         );

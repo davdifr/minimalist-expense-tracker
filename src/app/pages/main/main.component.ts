@@ -32,7 +32,7 @@ import { ImportComponent } from '../../components/import/import.component';
         <app-form (transaction)="transactionService.addTransaction($event)" />
         <app-list
             [transactionsList]="transactionService.transactionList()"
-            (transactionToDelete)="transactionService.removeTransaction($event)"
+            (transactionToDelete)="transactionService.deleteTransaction($event)"
         /> `,
 })
 export default class MainComponent {
