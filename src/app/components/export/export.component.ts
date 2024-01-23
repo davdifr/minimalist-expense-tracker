@@ -1,22 +1,36 @@
 import { Component, input } from '@angular/core';
-import { FinancialTransaction } from '../../models/transactions.models';
+import {
+    FinancialTransaction,
+    TransactionIOData,
+} from '../../models/transactions.models';
 
 @Component({
     selector: 'app-export',
     standalone: true,
-    imports: [],
     template: `<button (click)="downloadTransactions()">Export</button>`,
 })
 export default class ExportComponent {
-    transactionList = input<FinancialTransaction[]>();
+    transactionList = input.required<FinancialTransaction[]>();
+    totalIncome = input.required<number>();
+    totalOutcome = input.required<number>();
 
     downloadTransactions(): void {
-        const data = this.transactionList();
+        const data = this.createTransactionIOData();
         const url = this.createBlobUrl(data);
         this.downloadFromUrl(
             url,
             `transaction-list-${this.dateToString()}.txt`
         );
+    }
+
+    private createTransactionIOData(): TransactionIOData {
+        return {
+            transactions: this.transactionList(),
+            totals: {
+                income: this.totalIncome(),
+                outcome: this.totalOutcome(),
+            },
+        };
     }
 
     private createBlobUrl(data: any): string {

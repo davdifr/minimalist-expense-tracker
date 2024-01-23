@@ -18,3 +18,11 @@ export interface OutcomeTransaction extends FinancialItemBase {
 }
 
 export type FinancialTransaction = IncomeTransaction | OutcomeTransaction;
+
+export interface TransactionIOData {
+    transactions: FinancialTransaction[];
+    totals: {
+        income: number;
+        outcome: number;
+    };
+}

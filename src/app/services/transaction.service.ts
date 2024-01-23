@@ -1,5 +1,8 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { FinancialTransaction } from '../models/transactions.models';
+import {
+    FinancialTransaction,
+    TransactionIOData,
+} from '../models/transactions.models';
 import {
     TransactionOperation,
     TransactionType,
@@ -37,6 +40,12 @@ export class TransactionService {
             transaction.amount,
             TransactionOperation.Remove
         );
+    }
+
+    loadTransactions(transactions: TransactionIOData) {
+        this.transactionList.set(transactions.transactions);
+        this.totalIncome.set(transactions.totals.income);
+        this.totalOutcome.set(transactions.totals.outcome);
     }
 
     private updateTotals(
