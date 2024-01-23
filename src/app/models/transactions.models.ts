@@ -14,7 +14,7 @@ export interface IncomeTransaction extends FinancialItemBase {
 
 export interface OutcomeTransaction extends FinancialItemBase {
     type: TransactionType.Outcome;
-    category: string;
+    category?: string;
 }
 
 export type FinancialTransaction = IncomeTransaction | OutcomeTransaction;

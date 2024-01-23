@@ -33,14 +33,28 @@ export class FormComponent {
         });
     }
 
-    onSubmit() {
-        if (this.form.invalid) return;
-        this.transaction.emit(this.form.value);
-        this.reset();
-    }
-
-    private reset() {
+    private resetAndInitializeDateInForm() {
         this.form.reset();
         this.form.patchValue({ date: this.#formattedDate });
+    }
+
+    private createAndEmitNewTransaction(): void {
+        if (this.form.invalid) return;
+        const { amount, date, description, type } = this.form.value;
+
+        const newTransaction = {
+            id: Date.now().toString(),
+            amount,
+            date,
+            description,
+            type,
+        };
+
+        this.transaction.emit(newTransaction);
+    }
+
+    onSubmit() {
+        this.createAndEmitNewTransaction();
+        this.resetAndInitializeDateInForm();
     }
 }
