@@ -42,10 +42,10 @@ export class TransactionService {
         );
     }
 
-    loadTransactionsAndSetTotals(transactions: TransactionIOData) {
-        this.transactionList.set(transactions.transactions);
-        this.totalIncome.set(transactions.totals.income);
-        this.totalOutcome.set(transactions.totals.outcome);
+    loadTransactionsAndSetTotals(data: TransactionIOData) {
+        this.transactionList.set(data.transactions);
+        this.totalIncome.set(data.totals.income);
+        this.totalOutcome.set(data.totals.outcome);
     }
 
     private updateTotals(
