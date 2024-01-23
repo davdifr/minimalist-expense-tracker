@@ -3,16 +3,18 @@ import { TransactionService } from '../../services/transaction.service';
 import { SummaryComponent } from '../../components/summary/summary.component';
 import { FormComponent } from '../../components/form/form.component';
 import ListComponent from '../../components/list/list.component';
+import ExportComponent from '../../components/export/export.component';
 
 @Component({
     selector: 'app-main',
     standalone: true,
-    imports: [SummaryComponent, FormComponent, ListComponent],
+    imports: [SummaryComponent, ExportComponent, FormComponent, ListComponent],
     template: `<app-summary
             [totalIncome]="transactionService.totalIncome()"
             [totalOutcome]="transactionService.totalOutcome()"
             [netTotal]="transactionService.netTotal()"
         />
+        <app-export [transactionList]="transactionService.transactionList()" />
         <app-form (transaction)="transactionService.addTransaction($event)" />
         <app-list
             [transactionsList]="transactionService.transactionList()"
