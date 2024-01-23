@@ -20,12 +20,12 @@ export class FormComponent {
     #fb = inject(FormBuilder);
     form: FormGroup;
 
-    constructor() {
-        const formattedDate = new Date().toISOString().slice(0, 10);
+    #formattedDate = new Date().toISOString().slice(0, 10);
 
+    constructor() {
         this.form = this.#fb.group({
             amount: [0, [Validators.required, Validators.min(0.01)]],
-            date: [formattedDate, Validators.required],
+            date: [this.#formattedDate, Validators.required],
             description: [],
             type: ['outcome', Validators.required],
             // category: [],
@@ -35,6 +35,11 @@ export class FormComponent {
     onSubmit() {
         if (this.form.invalid) return;
         this.transaction.emit(this.form.value);
+        this.reset();
+    }
+
+    private reset() {
         this.form.reset();
+        this.form.patchValue({ date: this.#formattedDate });
     }
 }
