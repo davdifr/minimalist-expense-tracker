@@ -7,6 +7,7 @@ import {
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
+import { TransactionType } from '../../models/transactions.enums';
 
 @Component({
     selector: 'app-form',
@@ -27,7 +28,7 @@ export class FormComponent {
             amount: [0, [Validators.required, Validators.min(0.01)]],
             date: [this.#formattedDate, Validators.required],
             description: [],
-            type: ['outcome', Validators.required],
+            type: [TransactionType.Outcome, Validators.required],
             // category: [],
         });
     }
