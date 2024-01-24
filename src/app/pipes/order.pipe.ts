@@ -11,11 +11,11 @@ export class OrderPipe implements PipeTransform {
         list: FinancialTransaction[],
         order: Order | null
     ): FinancialTransaction[] {
-        if (!list || !order) {
-            return list;
+        if (!order) {
+            return [...list];
         }
 
-        return list.sort((a, b) => {
+        return [...list].sort((a, b) => {
             if (order === Order.ASC) {
                 return a.amount - b.amount;
             } else {
