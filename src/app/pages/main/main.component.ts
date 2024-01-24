@@ -7,6 +7,7 @@ import ExportComponent from '../../components/export/export.component';
 import { ImportComponent } from '../../components/import/import.component';
 import { SelectTypeComponent } from '../../components/select-type/select-type.component';
 import { TransactionType } from '../../models/transactions.enums';
+import { SelectOrderComponent } from '../../components/select-order/select-order.component';
 
 @Component({
     selector: 'app-main',
@@ -18,6 +19,7 @@ import { TransactionType } from '../../models/transactions.enums';
         FormComponent,
         ListComponent,
         SelectTypeComponent,
+        SelectOrderComponent,
     ],
     template: `<app-summary
             [totalIncome]="transactionService.totalIncome()"
@@ -38,13 +40,17 @@ import { TransactionType } from '../../models/transactions.enums';
         <app-list
             [transactionsList]="transactionService.transactionsList()"
             [transactionsFilter]="transactionService.transactionsTypeFilter()"
+            [transactionsOrder]="transactionService.transactionsOrder()"
             (transactionToDelete)="transactionService.deleteTransaction($event)"
         />
         <app-select-type
             (typeSelected)="
                 transactionService.transactionsListFilteredByType($event)
             "
-        /> `,
+        />
+        <app-select-order
+            (orderSelected)="transactionService.sortTransactionsByOrder($event)"
+        />`,
 })
 export default class MainComponent {
     transactionService = inject(TransactionService);

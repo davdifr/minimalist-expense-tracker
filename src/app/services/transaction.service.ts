@@ -7,6 +7,7 @@ import {
     TransactionOperation,
     TransactionType,
 } from '../models/transactions.enums';
+import { Order } from '../models/orders.enum';
 
 @Injectable({
     providedIn: 'root',
@@ -14,6 +15,7 @@ import {
 export class TransactionService {
     transactionsList = signal<FinancialTransaction[]>([]);
     transactionsTypeFilter = signal<TransactionType | null>(null);
+    transactionsOrder = signal<Order | null>(null);
 
     totalIncome = signal<number>(0);
     totalOutcome = signal<number>(0);
@@ -52,6 +54,10 @@ export class TransactionService {
 
     transactionsListFilteredByType(type: TransactionType | null) {
         this.transactionsTypeFilter.update(() => type);
+    }
+
+    sortTransactionsByOrder(order: Order | null) {
+        this.transactionsOrder.update(() => order);
     }
 
     private updateTotals(
