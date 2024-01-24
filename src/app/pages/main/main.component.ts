@@ -5,6 +5,8 @@ import { FormComponent } from '../../components/form/form.component';
 import ListComponent from '../../components/list/list.component';
 import ExportComponent from '../../components/export/export.component';
 import { ImportComponent } from '../../components/import/import.component';
+import { SelectTypeComponent } from '../../components/select-type/select-type.component';
+import { TransactionType } from '../../models/transactions.enums';
 
 @Component({
     selector: 'app-main',
@@ -15,6 +17,7 @@ import { ImportComponent } from '../../components/import/import.component';
         ImportComponent,
         FormComponent,
         ListComponent,
+        SelectTypeComponent,
     ],
     template: `<app-summary
             [totalIncome]="transactionService.totalIncome()"
@@ -34,7 +37,13 @@ import { ImportComponent } from '../../components/import/import.component';
         <app-form (transaction)="transactionService.addTransaction($event)" />
         <app-list
             [transactionsList]="transactionService.transactionsList()"
+            [transactionsFilter]="transactionService.transactionsTypeFilter()"
             (transactionToDelete)="transactionService.deleteTransaction($event)"
+        />
+        <app-select-type
+            (typeSelected)="
+                transactionService.transactionsListFilteredByType($event)
+            "
         /> `,
 })
 export default class MainComponent {

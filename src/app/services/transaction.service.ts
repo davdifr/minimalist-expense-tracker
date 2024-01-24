@@ -13,6 +13,8 @@ import {
 })
 export class TransactionService {
     transactionsList = signal<FinancialTransaction[]>([]);
+    transactionsTypeFilter = signal<TransactionType | null>(null);
+
     totalIncome = signal<number>(0);
     totalOutcome = signal<number>(0);
     netTotal = computed(() => this.totalIncome() - this.totalOutcome());
@@ -46,6 +48,10 @@ export class TransactionService {
         this.transactionsList.set(data.transactions);
         this.totalIncome.set(data.totals.income);
         this.totalOutcome.set(data.totals.outcome);
+    }
+
+    transactionsListFilteredByType(type: TransactionType | null) {
+        this.transactionsTypeFilter.update(() => type);
     }
 
     private updateTotals(
