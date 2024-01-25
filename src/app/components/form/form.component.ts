@@ -25,7 +25,7 @@ export class FormComponent {
 
     constructor() {
         this.form = this.#fb.group({
-            amount: [0, [Validators.required, Validators.min(0.01)]],
+            amount: [0.01, [Validators.required, Validators.min(0.01)]],
             date: [this.#formattedDate, Validators.required],
             description: [],
             type: [TransactionType.Outcome, Validators.required],
@@ -36,6 +36,7 @@ export class FormComponent {
     private resetAndInitializeDateInForm(): void {
         this.form.reset();
         this.form.patchValue({
+            amount: 0.01,
             date: this.#formattedDate,
             type: TransactionType.Outcome,
         });

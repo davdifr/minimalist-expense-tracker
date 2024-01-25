@@ -12,9 +12,9 @@ import { SearchPipe } from '../../pipes/search.pipe';
     standalone: true,
     imports: [CurrencyPipe, TransactionTypeFilterPipe, OrderPipe, SearchPipe],
     template: `
-        @for (transaction of transactionsList() | transactionTypeFilter:
-        transactionsFilter() | order: transactionsOrder() | search:
-        transactionsSearch(); track $index) {
+        @for (transaction of transactionsList().reverse() |
+        transactionTypeFilter: transactionsFilter() | order: transactionsOrder()
+        | search: transactionsSearch(); track $index) {
         <div>
             {{ transaction.amount | currency : 'EUR' }}
             {{ transaction.type }}
