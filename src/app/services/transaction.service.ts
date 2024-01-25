@@ -16,6 +16,7 @@ export class TransactionService {
     transactionsList = signal<FinancialTransaction[]>([]);
     transactionsTypeFilter = signal<TransactionType | null>(null);
     transactionsOrder = signal<Order | null>(null);
+    transactionsSearch = signal<string>('');
 
     totalIncome = signal<number>(0);
     totalOutcome = signal<number>(0);
@@ -58,6 +59,10 @@ export class TransactionService {
 
     sortTransactionsByOrder(order: Order | null) {
         this.transactionsOrder.update(() => order);
+    }
+
+    transactionsListFilteredBySearch(text: string) {
+        this.transactionsSearch.update(() => text);
     }
 
     private updateTotals(

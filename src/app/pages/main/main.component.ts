@@ -8,6 +8,7 @@ import { ImportComponent } from '../../components/import/import.component';
 import { SelectTypeComponent } from '../../components/select-type/select-type.component';
 import { TransactionType } from '../../models/transactions.enums';
 import { SelectOrderComponent } from '../../components/select-order/select-order.component';
+import { SearchComponent } from '../../components/search/search.component';
 
 @Component({
     selector: 'app-main',
@@ -20,6 +21,7 @@ import { SelectOrderComponent } from '../../components/select-order/select-order
         ListComponent,
         SelectTypeComponent,
         SelectOrderComponent,
+        SearchComponent,
     ],
     template: `<app-summary
             [totalIncome]="transactionService.totalIncome()"
@@ -41,6 +43,7 @@ import { SelectOrderComponent } from '../../components/select-order/select-order
             [transactionsList]="transactionService.transactionsList()"
             [transactionsFilter]="transactionService.transactionsTypeFilter()"
             [transactionsOrder]="transactionService.transactionsOrder()"
+            [transactionsSearch]="transactionService.transactionsSearch()"
             (transactionToDelete)="transactionService.deleteTransaction($event)"
         />
         <app-select-type
@@ -50,6 +53,11 @@ import { SelectOrderComponent } from '../../components/select-order/select-order
         />
         <app-select-order
             (orderSelected)="transactionService.sortTransactionsByOrder($event)"
+        />
+        <app-search
+            (searchChange)="
+                transactionService.transactionsListFilteredBySearch($event)
+            "
         />`,
 })
 export default class MainComponent {
