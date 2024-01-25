@@ -9,6 +9,7 @@ import { SelectTypeComponent } from '../../components/select-type/select-type.co
 import { TransactionType } from '../../models/transactions.enums';
 import { SelectOrderComponent } from '../../components/select-order/select-order.component';
 import { SearchComponent } from '../../components/search/search.component';
+import { RemainingExpenseCalculatorComponent } from '../../components/remaining-expense-calculator/remaining-expense-calculator.component';
 
 @Component({
     selector: 'app-main',
@@ -17,6 +18,7 @@ import { SearchComponent } from '../../components/search/search.component';
         SummaryComponent,
         ExportComponent,
         ImportComponent,
+        RemainingExpenseCalculatorComponent,
         FormComponent,
         ListComponent,
         SelectTypeComponent,
@@ -38,6 +40,8 @@ import { SearchComponent } from '../../components/search/search.component';
                 transactionService.loadTransactionsAndSetTotals($event)
             "
         />
+
+        <app-remaining-expense-calculator />
         <app-form (transaction)="transactionService.addTransaction($event)" />
         <app-list
             [transactionsList]="transactionService.transactionsList()"
