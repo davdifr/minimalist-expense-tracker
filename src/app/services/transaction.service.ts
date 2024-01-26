@@ -22,6 +22,14 @@ export class TransactionService {
     totalOutcome = signal<number>(0);
     netTotal = computed(() => this.totalIncome() - this.totalOutcome());
 
+    currentMonthTotalIncome = computed(() =>
+        this.calculateCurrentMonthTotalByType(TransactionType.Income)
+    );
+
+    currentMonthTotalOutcome = computed(() =>
+        this.calculateCurrentMonthTotalByType(TransactionType.Outcome)
+    );
+
     addTransaction(transaction: FinancialTransaction) {
         this.transactionsList.update((existingTransactions) => [
             ...existingTransactions,
@@ -63,6 +71,20 @@ export class TransactionService {
 
     transactionsListFilteredBySearch(text: string) {
         this.transactionsSearch.update(() => text);
+    }
+
+    calculateCurrentMonthTotalByType(type: TransactionType): number {
+        return this.transactionsList()
+            .filter(
+                (transaction) =>
+                    transaction.type === type &&
+                    this.isTransactionInCurrentMonth(transaction)
+            )
+            .reduce((acc, transaction) => acc + transaction.amount, 0);
+    }
+
+    private isTransactionInCurrentMonth(transaction: FinancialTransaction) {
+        return new Date(transaction.date).getMonth() === new Date().getMonth();
     }
 
     private updateTotals(

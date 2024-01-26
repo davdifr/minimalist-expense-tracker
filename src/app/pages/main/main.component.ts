@@ -6,7 +6,6 @@ import ListComponent from '../../components/list/list.component';
 import ExportComponent from '../../components/export/export.component';
 import { ImportComponent } from '../../components/import/import.component';
 import { SelectTypeComponent } from '../../components/select-type/select-type.component';
-import { TransactionType } from '../../models/transactions.enums';
 import { SelectOrderComponent } from '../../components/select-order/select-order.component';
 import { SearchComponent } from '../../components/search/search.component';
 import { RemainingExpenseCalculatorComponent } from '../../components/remaining-expense-calculator/remaining-expense-calculator.component';
@@ -41,7 +40,14 @@ import { RemainingExpenseCalculatorComponent } from '../../components/remaining-
             "
         />
 
-        <app-remaining-expense-calculator />
+        <app-remaining-expense-calculator
+            [currentMonthTotalIncome]="
+                transactionService.currentMonthTotalIncome()
+            "
+            [currentMonthTotalOutcome]="
+                transactionService.currentMonthTotalOutcome()
+            "
+        />
         <app-form (transaction)="transactionService.addTransaction($event)" />
         <app-list
             [transactionsList]="transactionService.transactionsList()"
