@@ -13,10 +13,16 @@ import {
             type="file"
             (change)="onFileSelected($event)"
             accept=".txt"
-            style="display: none;"
         />
         <button (click)="fileInput.click()">Import</button>
     `,
+    styles: [
+        `
+            input {
+                display: none;
+            }
+        `,
+    ],
 })
 export class ImportComponent {
     @Output() transactionsUploaded = new EventEmitter<TransactionIOData>();
