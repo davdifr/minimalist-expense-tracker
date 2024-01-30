@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TransactionType } from '../../models/transactions.enums';
 import { Order } from '../../models/orders.enum';
@@ -20,8 +20,14 @@ import { Order } from '../../models/orders.enum';
 })
 export class SelectOrderComponent {
     @Output() orderSelected = new EventEmitter<Order | null>();
+    filteredOrder = input<Order | null>(null);
+
     order = Order;
     selectedOrder: Order | null = null;
+
+    ngOnInit() {
+        this.selectedOrder = this.filteredOrder();
+    }
 
     onOrderChange(order: Order | null) {
         this.selectedOrder = order;

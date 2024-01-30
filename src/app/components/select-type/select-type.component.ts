@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TransactionType } from '../../models/transactions.enums';
 
@@ -19,8 +19,14 @@ import { TransactionType } from '../../models/transactions.enums';
 })
 export class SelectTypeComponent {
     @Output() typeSelected = new EventEmitter<TransactionType | null>();
+    filteredType = input<TransactionType | null>(null);
+
     transactionTypes = TransactionType;
     selectedType: TransactionType | null = null;
+
+    ngOnInit() {
+        this.selectedType = this.filteredType();
+    }
 
     onTypeChange(type: TransactionType | null) {
         this.selectedType = type;
