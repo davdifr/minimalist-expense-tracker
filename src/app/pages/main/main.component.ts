@@ -60,11 +60,11 @@ import { RemainingExpenseCalculatorComponent } from '../../components/remaining-
             (typeSelected)="
                 transactionService.transactionsListFilteredByType($event)
             "
-            [filteredType]="transactionService.transactionsTypeFilter()"
+            [transactionsFilter]="transactionService.transactionsTypeFilter()"
         />
         <app-select-order
             (orderSelected)="transactionService.sortTransactionsByOrder($event)"
-            [filteredOrder]="transactionService.transactionsOrder()"
+            [transactionsOrder]="transactionService.transactionsOrder()"
         />
         <app-search
             (searchChange)="

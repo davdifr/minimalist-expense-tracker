@@ -19,13 +19,13 @@ import { TransactionType } from '../../models/transactions.enums';
 })
 export class SelectTypeComponent {
     @Output() typeSelected = new EventEmitter<TransactionType | null>();
-    filteredType = input<TransactionType | null>(null);
+    transactionsFilter = input<TransactionType | null>(null);
 
     transactionTypes = TransactionType;
     selectedType: TransactionType | null = null;
 
     ngOnInit() {
-        this.selectedType = this.filteredType();
+        this.selectedType = this.transactionsFilter();
     }
 
     onTypeChange(type: TransactionType | null) {

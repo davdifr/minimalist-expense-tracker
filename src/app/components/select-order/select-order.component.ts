@@ -20,13 +20,13 @@ import { Order } from '../../models/orders.enum';
 })
 export class SelectOrderComponent {
     @Output() orderSelected = new EventEmitter<Order | null>();
-    filteredOrder = input<Order | null>(null);
+    transactionsOrder = input<Order | null>(null);
 
     order = Order;
     selectedOrder: Order | null = null;
 
     ngOnInit() {
-        this.selectedOrder = this.filteredOrder();
+        this.selectedOrder = this.transactionsOrder();
     }
 
     onOrderChange(order: Order | null) {

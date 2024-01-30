@@ -1,4 +1,4 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import {
     FinancialTransaction,
     TransactionIOData,
@@ -8,11 +8,14 @@ import {
     TransactionType,
 } from '../models/transactions.enums';
 import { Order } from '../models/orders.enum';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class TransactionService {
+    #localStorage = inject(LocalStorageService);
+
     transactionsList = signal<FinancialTransaction[]>([]);
     transactionsTypeFilter = signal<TransactionType | null>(null);
     transactionsOrder = signal<Order | null>(null);
@@ -67,12 +70,12 @@ export class TransactionService {
 
     transactionsListFilteredByType(type: TransactionType | null) {
         this.transactionsTypeFilter.update(() => type);
-        this.setToLocalStorage('transactionsTypeFilter', type);
+        this.#localStorage.setToLocalStorage('transactionsTypeFilter', type);
     }
 
     sortTransactionsByOrder(order: Order | null) {
         this.transactionsOrder.update(() => order);
-        this.setToLocalStorage('transactionsOrder', order);
+        this.#localStorage.setToLocalStorage('transactionsOrder', order);
     }
 
     transactionsListFilteredBySearch(text: string) {
@@ -80,10 +83,11 @@ export class TransactionService {
     }
 
     private loadFilters() {
-        const storedTypeFilter = this.getFromLocalStorage(
+        const storedTypeFilter = this.#localStorage.getFromLocalStorage(
             'transactionsTypeFilter'
         );
-        const storedOrder = this.getFromLocalStorage('transactionsOrder');
+        const storedOrder =
+            this.#localStorage.getFromLocalStorage('transactionsOrder');
 
         if (storedTypeFilter) {
             this.transactionsTypeFilter.update(() => storedTypeFilter);
@@ -123,30 +127,5 @@ export class TransactionService {
                 ? currentTotal + transactionAmount
                 : currentTotal - transactionAmount
         );
-    }
-
-    // Helper method to get and parse item from local storage
-    private getFromLocalStorage(key: string) {
-        const item = localStorage.getItem(key);
-        if (item) {
-            try {
-                return JSON.parse(item);
-            } catch (error) {
-                console.error(
-                    `Error parsing ${key} from local storage:`,
-                    error
-                );
-            }
-        }
-        return null;
-    }
-
-    // Helper method to set item to local storage
-    private setToLocalStorage(key: string, value: any) {
-        try {
-            localStorage.setItem(key, JSON.stringify(value));
-        } catch (error) {
-            console.error(`Error setting item ${key} to local storage:`, error);
-        }
     }
 }
