@@ -399,8 +399,15 @@ button.btn.btn-danger {
 #section__transaction .transactions .transaction .transaction__date {
     display: flex;
     align-items: center;
+    text-wrap: nowrap;
 }
 
 #section__transaction .transactions .transaction .transaction__date svg {
     margin-right: 8px;
+}
+
+#section__transaction .transactions .transaction .transaction__category {
+    width: calc(100% - 350px);
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
