@@ -197,9 +197,11 @@ body {
 #section__header .buttons {
     display: flex;
 }
+
 #section__header .buttons .btn:not(:last-child) {
     margin-right: 5px;
 }
+
 #section__header h1 {
     font-size: var(--font-title);
     font-weight: bold;

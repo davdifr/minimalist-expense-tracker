@@ -1,0 +1,7 @@
+input {
+    display: none;
+}
+
+.btn {
+    margin-left: var(--small-gap);
+}

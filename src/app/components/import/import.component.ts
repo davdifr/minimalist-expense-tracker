@@ -34,13 +34,7 @@ import {
             Import
         </button>
     `,
-    styles: [
-        `
-            input {
-                display: none;
-            }
-        `,
-    ],
+    styleUrls: ['./import.component.css'],
 })
 export class ImportComponent {
     @Output() transactionsUploaded = new EventEmitter<TransactionIOData>();
