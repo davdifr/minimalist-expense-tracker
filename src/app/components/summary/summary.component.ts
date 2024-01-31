@@ -8,17 +8,17 @@ import { Component, input } from '@angular/core';
     template: `
         <div class="row">
             <div class="card">
-                <p class="card__label">Total income</p>
+                <p class="card__label">Total Income</p>
                 <p class="card__text">{{ totalIncome() | currency : 'EUR' }}</p>
             </div>
             <div class="card">
-                <p class="card__label">Total income</p>
+                <p class="card__label">Total Outcome</p>
                 <p class="card__text">
                     {{ totalOutcome() | currency : 'EUR' }}
                 </p>
             </div>
             <div class="card">
-                <p class="card__label">Total income</p>
+                <p class="card__label">Net Total</p>
                 <p class="card__text">{{ netTotal() | currency : 'EUR' }}</p>
             </div>
         </div>
