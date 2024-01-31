@@ -1,21 +1,38 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-remaining-expense-calculator',
     standalone: true,
-    imports: [FormsModule],
+    imports: [FormsModule, CurrencyPipe],
     template: `
-        <div>
-            <input type="number" [(ngModel)]="target" />
-            <button (click)="calculateRemainingExpense()">
-                Calculate remaining daily expense
-            </button>
-            @if (remainingExpense > 0) {
-            <p>Remaining daily expense: {{ remainingExpense }}</p>
-            } @else if (remainingExpense < 0) {
-            <p>You've exceeded your budget</p>
-            }
+        <div class="row row__number">
+            <div class="card card__number">
+                <h2>Calculate remaining daily expenses</h2>
+                <div class="card__input">
+                    <input
+                        type="number"
+                        name="number"
+                        class="input__number"
+                        [(ngModel)]="target"
+                    />
+                    <button class="btn" (click)="calculateRemainingExpense()">
+                        Calculate
+                    </button>
+                </div>
+            </div>
+            <div class="card">
+                <p class="card__label">Remaining daily expenses</p>
+
+                @if (remainingExpense >= 0) {
+                <p class="card__text-big">
+                    {{ remainingExpense | currency : 'EUR' }}
+                </p>
+                }@else if (remainingExpense < 0) {
+                <p class="card__text-big">N.P</p>
+                }
+            </div>
         </div>
     `,
 })

@@ -24,53 +24,7 @@ import { RemainingExpenseCalculatorComponent } from '../../components/remaining-
         SelectOrderComponent,
         SearchComponent,
     ],
-    template: `<app-summary
-            [totalIncome]="transactionService.totalIncome()"
-            [totalOutcome]="transactionService.totalOutcome()"
-            [netTotal]="transactionService.netTotal()"
-        />
-        <app-export
-            [transactionsList]="transactionService.transactionsList()"
-            [totalIncome]="transactionService.totalIncome()"
-            [totalOutcome]="transactionService.totalOutcome()"
-        />
-        <app-import
-            (transactionsUploaded)="
-                transactionService.loadTransactionsAndSetTotals($event)
-            "
-        />
-
-        <app-remaining-expense-calculator
-            [currentMonthTotalIncome]="
-                transactionService.currentMonthTotalIncome()
-            "
-            [currentMonthTotalOutcome]="
-                transactionService.currentMonthTotalOutcome()
-            "
-        />
-        <app-form (transaction)="transactionService.addTransaction($event)" />
-        <app-list
-            [transactionsList]="transactionService.transactionsList()"
-            [transactionsFilter]="transactionService.transactionsTypeFilter()"
-            [transactionsOrder]="transactionService.transactionsOrder()"
-            [transactionsSearch]="transactionService.transactionsSearch()"
-            (transactionToDelete)="transactionService.deleteTransaction($event)"
-        />
-        <app-select-type
-            (typeSelected)="
-                transactionService.transactionsListFilteredByType($event)
-            "
-            [transactionsFilter]="transactionService.transactionsTypeFilter()"
-        />
-        <app-select-order
-            (orderSelected)="transactionService.sortTransactionsByOrder($event)"
-            [transactionsOrder]="transactionService.transactionsOrder()"
-        />
-        <app-search
-            (searchChange)="
-                transactionService.transactionsListFilteredBySearch($event)
-            "
-        />`,
+    templateUrl: './main.component.html',
 })
 export default class MainComponent {
     transactionService = inject(TransactionService);

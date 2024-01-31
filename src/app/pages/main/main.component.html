@@ -1,0 +1,100 @@
+<main>
+    <section id="section__header">
+        <div class="container">
+            <div class="nav">
+                <div class="logo">
+                    <h1>MET <span>Minimalist Expense Tracker</span></h1>
+                </div>
+                <div class="buttons">
+                    <app-export
+                        [transactionsList]="
+                            transactionService.transactionsList()
+                        "
+                        [totalIncome]="transactionService.totalIncome()"
+                        [totalOutcome]="transactionService.totalOutcome()"
+                    />
+                    <app-import
+                        (transactionsUploaded)="
+                            transactionService.loadTransactionsAndSetTotals(
+                                $event
+                            )
+                        "
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section__dashboard">
+        <div class="container">
+            <app-summary
+                [totalIncome]="transactionService.totalIncome()"
+                [totalOutcome]="transactionService.totalOutcome()"
+                [netTotal]="transactionService.netTotal()"
+            />
+
+            <app-remaining-expense-calculator
+                [currentMonthTotalIncome]="
+                    transactionService.currentMonthTotalIncome()
+                "
+                [currentMonthTotalOutcome]="
+                    transactionService.currentMonthTotalOutcome()
+                "
+            />
+        </div>
+    </section>
+    <section id="section__transaction">
+        <div class="container">
+            <h2>Add transaction</h2>
+            <app-form
+                (transaction)="transactionService.addTransaction($event)"
+            />
+            <form class="filters">
+                <h3>Filter</h3>
+                <div class="row">
+                    <app-select-type
+                        (typeSelected)="
+                            transactionService.transactionsListFilteredByType(
+                                $event
+                            )
+                        "
+                        [transactionsFilter]="
+                            transactionService.transactionsTypeFilter()
+                        "
+                    />
+                    <app-select-order
+                        (orderSelected)="
+                            transactionService.sortTransactionsByOrder($event)
+                        "
+                        [transactionsOrder]="
+                            transactionService.transactionsOrder()
+                        "
+                    />
+                    <app-search
+                        (searchChange)="
+                            transactionService.transactionsListFilteredBySearch(
+                                $event
+                            )
+                        "
+                    />
+                </div>
+            </form>
+
+            <div class="transactions">
+                <app-list
+                    [transactionsList]="transactionService.transactionsList()"
+                    [transactionsFilter]="
+                        transactionService.transactionsTypeFilter()
+                    "
+                    [transactionsOrder]="transactionService.transactionsOrder()"
+                    [transactionsSearch]="
+                        transactionService.transactionsSearch()
+                    "
+                    (transactionToDelete)="
+                        transactionService.deleteTransaction($event)
+                    "
+                />
+            </div>
+        </div>
+    </section>
+</main>

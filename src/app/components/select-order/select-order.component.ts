@@ -12,9 +12,9 @@ import { Order } from '../../models/orders.enum';
             [(ngModel)]="selectedOrder"
             (change)="onOrderChange(selectedOrder)"
         >
-            <option [ngValue]="null">---</option>
-            <option [value]="order.ASC">ASC</option>
-            <option [value]="order.DESC">DESC</option>
+            <option [ngValue]="null">Insertion order</option>
+            <option [value]="order.ASC">Ascendent</option>
+            <option [value]="order.DESC">Descendent</option>
         </select>
     `,
 })

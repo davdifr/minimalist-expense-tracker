@@ -1,31 +1,43 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div>
-        <label for="amount">Amount</label>
-        <input id="amount" type="number" formControlName="amount" />
-    </div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="insert__transaction">
+    <div class="row">
+        <input
+            id="amount"
+            type="number"
+            formControlName="amount"
+            class="item"
+        />
+        <input id="date" type="date" formControlName="date" class="item" />
 
-    <div>
-        <label for="date">Date</label>
-        <input id="date" type="date" formControlName="date" />
-    </div>
-
-    <div>
-        <label for="description">Description</label>
-        <input id="description" type="text" formControlName="description" />
-    </div>
-
-    <div>
-        <label for="type">Type</label>
-        <select id="type" formControlName="type">
+        <select id="type" formControlName="type" class="item">
             <option value="income">Income</option>
             <option value="outcome">Outcome</option>
         </select>
+
+        <input
+            id="description"
+            type="text"
+            formControlName="description"
+            class="item"
+            placeholder="Description"
+        />
+        <button
+            type="submit"
+            [disabled]="form.invalid"
+            class="btn btn-primary item"
+        >
+            <svg
+                width="24"
+                height="25"
+                viewBox="0 0 24 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M11.5 13H6V12H11.5V6.5H12.5V12H18V13H12.5V18.5H11.5V13Z"
+                    fill="white"
+                />
+            </svg>
+            Add
+        </button>
     </div>
-
-    <!-- <div>
-        <label for="category">Category</label>
-        <select id="category" formControlName="category"></select>
-    </div> -->
-
-    <button type="submit" [disabled]="form.invalid">Add</button>
 </form>

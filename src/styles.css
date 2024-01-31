@@ -1,1 +1,406 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap");
+
+:root {
+    /* margins */
+    --small-gap: 1.25rem;
+    --extra-small-gap: 0.625rem;
+    --section-small-margin: 1.875rem;
+    --section-margin: 2.5rem;
+    --padding-extralarge: 3.125rem;
+
+    --input-x-padding: 1.125rem;
+    --input-y-padding: 1rem;
+
+    /* colors */
+    --white: #fff;
+    --bg-color: #fff;
+    --bg-light: #fafafa;
+    --border-color: #e2e2e2;
+    --black: #000;
+    --light-text: #818181;
+    --extra-light-text: #a7a7a7;
+    --danger-color: #d95a5a;
+    --red-border: #d7bcbc;
+    --green-border: #bcd7c8;
+
+    /* fonts */
+    --font-small: 0.875rem;
+    --font-regular: 1rem;
+    --font-medium: 1.125;
+    --font-large: 1.375rem;
+    --font-extralarge: 2rem;
+    --font-title: 2.25rem;
+    --font-superlarge: 3.125rem;
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol,
+ul {
+    list-style: none;
+}
+blockquote,
+q {
+    quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* ****************************
+    FONT
+**************************** */
+html,
+body {
+    font-family: "Inter", sans-serif;
+}
+
+/* ****************************
+    Utilities
+**************************** */
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1232px;
+    margin: auto;
+}
+
+/* ****************************
+    Section header
+**************************** */
+#section__header {
+    padding: var(--padding-extralarge) 0;
+}
+#section__header .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#section__header .buttons {
+    display: flex;
+}
+#section__header .buttons .btn:not(:last-child) {
+    margin-right: 5px;
+}
+#section__header h1 {
+    font-size: var(--font-title);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+#section__header h1 span {
+    font-size: var(--font-regular);
+    font-weight: 400;
+    margin-left: var(--extra-small-gap);
+}
+/* ****************************
+    Section dashboard
+**************************** */
+#section__dashboard .row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: var(--small-gap);
+}
+#section__dashboard .row.row__number {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: var(--small-gap);
+}
+#section__dashboard .row.row__number .card:nth-child(1) {
+    grid-column: span 2;
+}
+#section__dashboard .card {
+    background-color: var(--bg-light);
+    padding: 2.5rem var(--section-small-margin);
+    border-radius: 10px;
+}
+
+#section__dashboard .card .card__label {
+    font-size: var(--font-regular);
+    color: var(--extra-light-text);
+}
+#section__dashboard .card .card__text {
+    font-size: var(--font-extralarge);
+    font-weight: bold;
+    margin-top: var(--extra-small-gap);
+}
+
+#section__dashboard .card__input {
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    gap: var(--small-gap);
+}
+
+#section__dashboard .card__number h2 {
+    font-size: var(--font-medium);
+    font-weight: bold;
+    margin-bottom: var(--small-gap);
+}
+#section__dashboard .card .card__text-big {
+    font-size: var(--font-superlarge);
+    font-weight: bold;
+    margin-top: var(--small-gap);
+}
+/* ****************************
+    Inputs
+**************************** */
+input,
+select {
+    width: 100%;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: var(--input-y-padding) var(--input-x-padding);
+}
+
+button.btn {
+    background-color: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    padding: var(--input-y-padding) var(--input-x-padding);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+button.btn.btn-light {
+    border-radius: 60px;
+    padding: 12px 1.125rem;
+    background-color: var(--bg-light);
+    color: var(--black);
+}
+button.btn.btn-light svg {
+    margin-right: 8px;
+}
+button.btn.btn-danger {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+/* ****************************
+  Section transactions
+**************************** */
+#section__transaction .insert__transaction .row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto auto;
+    gap: var(--small-gap);
+}
+
+#section__transaction .insert__transaction .row .item {
+    grid-column: span 4;
+}
+#section__transaction .insert__transaction .row .item:nth-child(4) {
+    grid-column: span 11;
+}
+#section__transaction .insert__transaction .row .item:nth-child(5) {
+    grid-column: span 1;
+}
+#section__transaction .filters .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--small-gap);
+    margin-top: var(--small-gap);
+}
+
+#section__transaction .filters h3 {
+    font-size: var(--font-small);
+    font-weight: bold;
+}
+#section__transaction h2 {
+    font-size: var(--font-large);
+    font-weight: bold;
+    margin-top: var(--padding-extralarge);
+    margin-bottom: var(--small-gap);
+}
+
+#section__transaction .filters {
+    margin-top: var(--padding-extralarge);
+    padding-top: var(--padding-extralarge);
+    border-top: 1px solid var(--border-color);
+}
+
+/* ****************************
+   Transactions
+**************************** */
+#section__transaction .transactions {
+    padding: var(--padding-extralarge) 0;
+}
+#section__transaction .transactions .transaction {
+    background-color: var(--bg-light);
+    padding: var(--small-gap);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+#section__transaction .transactions .transaction:not(:first-child) {
+    margin-top: var(--extra-small-gap);
+}
+#section__transaction .transactions .transaction.transaction-income {
+    border-left: 3px solid var(--green-border);
+}
+#section__transaction .transactions .transaction.transaction-outcome {
+    border-left: 3px solid var(--red-border);
+}
+#section__transaction .transactions .transaction .transaction__content {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#section__transaction .transactions .transaction .transaction__label {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--extra-light-text);
+    font-size: var(--font-small);
+}
+#section__transaction .transactions .transaction h3 {
+    font-size: var(--font-large);
+    font-weight: bold;
+    margin-right: var(--small-gap);
+}
+#section__transaction .transactions .transaction p {
+    font-size: var(--font-regular);
+    color: var(--light-text);
+}
+#section__transaction .transactions .transaction p:not(:last-child) {
+    margin-right: var(--small-gap);
+}
+
+#section__transaction .transactions .transaction .btn.btn-danger {
+    position: absolute;
+    right: 27px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#section__transaction .transactions .transaction .transaction__date {
+    display: flex;
+    align-items: center;
+}
+
+#section__transaction .transactions .transaction .transaction__date svg {
+    margin-right: 8px;
+}
