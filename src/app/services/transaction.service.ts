@@ -1,4 +1,4 @@
-import { Injectable, computed, inject, signal } from '@angular/core';
+import { Injectable, OnInit, computed, inject, signal } from '@angular/core';
 import {
     FinancialTransaction,
     TransactionIOData,
@@ -9,12 +9,14 @@ import {
 } from '../models/transactions.enums';
 import { Order } from '../models/orders.enum';
 import { LocalStorageService } from './local-storage.service';
+import { IndexedDBService } from './indexed-db.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class TransactionService {
     #localStorage = inject(LocalStorageService);
+    #indexedDB = inject(IndexedDBService);
 
     transactionsList = signal<FinancialTransaction[]>([]);
     transactionsTypeFilter = signal<TransactionType | null>(null);
@@ -35,6 +37,10 @@ export class TransactionService {
 
     constructor() {
         this.loadFilters();
+
+        this.#indexedDB.getTransactions().then((transactions) => {
+            this.transactionsList.set(transactions);
+        });
     }
 
     addTransaction(transaction: FinancialTransaction) {
@@ -48,6 +54,8 @@ export class TransactionService {
             transaction.amount,
             TransactionOperation.Add
         );
+
+        this.#indexedDB.addTransaction(transaction);
     }
 
     deleteTransaction(transaction: FinancialTransaction) {
@@ -60,12 +68,19 @@ export class TransactionService {
             transaction.amount,
             TransactionOperation.Remove
         );
+
+        this.#indexedDB.deleteTransaction(transaction.id);
     }
 
-    loadTransactionsAndSetTotals(data: TransactionIOData) {
+    async loadTransactionsAndSetTotals(data: TransactionIOData) {
         this.transactionsList.set(data.transactions);
-        this.totalIncome.set(data.totals.income);
-        this.totalOutcome.set(data.totals.outcome);
+
+        const totals = await this.#indexedDB.getTotals();
+        this.totalIncome.set(totals.income);
+        this.totalOutcome.set(totals.outcome);
+
+        this.#indexedDB.clearTransactions();
+        this.#indexedDB.addTransactions(data.transactions);
     }
 
     transactionsListFilteredByType(type: TransactionType | null) {

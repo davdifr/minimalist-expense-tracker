@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { IndexedDBService } from './services/indexed-db.service';
 
 @Component({
     selector: 'app-root',
@@ -9,5 +10,7 @@ import { RouterOutlet } from '@angular/router';
     templateUrl: './app.component.html',
 })
 export class AppComponent {
+    #indexedDB = inject(IndexedDBService);
+
     title = 'minimalist-expense-tracker';
 }
