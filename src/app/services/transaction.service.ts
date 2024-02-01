@@ -73,13 +73,14 @@ export class TransactionService {
     }
 
     async loadTransactionsAndSetTotals(data: TransactionIOData) {
+        this.#indexedDB.clearTransactions();
         this.transactionsList.set(data.transactions);
 
-        const totals = await this.#indexedDB.getTotals();
-        this.totalIncome.set(totals.income);
-        this.totalOutcome.set(totals.outcome);
+        await this.#indexedDB.getTotals().then((totals) => {
+            this.totalIncome.set(totals.income);
+            this.totalOutcome.set(totals.outcome);
+        });
 
-        this.#indexedDB.clearTransactions();
         this.#indexedDB.addTransactions(data.transactions);
     }
 
