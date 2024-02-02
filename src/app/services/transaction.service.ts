@@ -73,15 +73,18 @@ export class TransactionService {
     }
 
     async loadTransactionsAndSetTotals(data: TransactionIOData) {
-        this.#indexedDB.clearTransactions();
-        this.transactionsList.set(data.transactions);
+        try {
+            this.#indexedDB.clearTransactions();
+            this.transactionsList.set(data.transactions);
 
-        await this.#indexedDB.getTotals().then((totals) => {
-            this.totalIncome.set(totals.income);
-            this.totalOutcome.set(totals.outcome);
-        });
-
-        this.#indexedDB.addTransactions(data.transactions);
+            this.#indexedDB.addTransactions(data.transactions);
+            await this.#indexedDB.getTotals().then((totals) => {
+                this.totalIncome.set(totals.income);
+                this.totalOutcome.set(totals.outcome);
+            });
+        } catch (error) {
+            console.error('An error occurred:', error);
+        }
     }
 
     transactionsListFilteredByType(type: TransactionType | null) {
