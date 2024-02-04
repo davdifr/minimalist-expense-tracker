@@ -3,10 +3,10 @@ import { FinancialTransaction } from '../models/transactions.models';
 import { Order } from '../models/orders.enum';
 
 @Pipe({
-    name: 'order',
+    name: 'sortTransactionsByAmount',
     standalone: true,
 })
-export class OrderPipe implements PipeTransform {
+export class SortTransactionsByAmountPipe implements PipeTransform {
     transform(
         list: FinancialTransaction[],
         order: Order | null

@@ -4,17 +4,22 @@ import { CurrencyPipe } from '@angular/common';
 import { TransactionTypeFilterPipe } from '../../pipes/transaction-type-filter';
 import { TransactionType } from '../../models/transactions.enums';
 import { Order } from '../../models/orders.enum';
-import { OrderPipe } from '../../pipes/order.pipe';
+import { SortTransactionsByAmountPipe } from '../../pipes/sort-transactions-by-amount.pipe';
 import { SearchPipe } from '../../pipes/search.pipe';
 
 @Component({
     selector: 'app-list',
     standalone: true,
-    imports: [CurrencyPipe, TransactionTypeFilterPipe, OrderPipe, SearchPipe],
+    imports: [
+        CurrencyPipe,
+        TransactionTypeFilterPipe,
+        SortTransactionsByAmountPipe,
+        SearchPipe,
+    ],
     template: `
         @for (transaction of transactionsList().reverse() |
-        transactionTypeFilter: transactionsFilter() | order: transactionsOrder()
-        | search: transactionsSearch(); track $index) {
+        transactionTypeFilter: transactionsFilter() | sortTransactionsByAmount:
+        transactionsOrder() | search: transactionsSearch(); track $index) {
 
         <div class="transaction transaction-{{ transaction.type }}">
             <p class="transaction__label">{{ transaction.type }}</p>
