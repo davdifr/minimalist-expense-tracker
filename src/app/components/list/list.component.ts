@@ -5,7 +5,7 @@ import { TransactionTypeFilterPipe } from '../../pipes/transaction-type-filter';
 import { TransactionType } from '../../models/transactions.enums';
 import { Order } from '../../models/orders.enum';
 import { SortTransactionsByAmountPipe } from '../../pipes/sort-transactions-by-amount.pipe';
-import { SearchPipe } from '../../pipes/search.pipe';
+import { FilterTransactionsByDescriptionPipe } from '../../pipes/filter-transactions-by-description.pipe';
 
 @Component({
     selector: 'app-list',
@@ -14,12 +14,13 @@ import { SearchPipe } from '../../pipes/search.pipe';
         CurrencyPipe,
         TransactionTypeFilterPipe,
         SortTransactionsByAmountPipe,
-        SearchPipe,
+        FilterTransactionsByDescriptionPipe,
     ],
     template: `
         @for (transaction of transactionsList().reverse() |
         transactionTypeFilter: transactionsFilter() | sortTransactionsByAmount:
-        transactionsOrder() | search: transactionsSearch(); track $index) {
+        transactionsOrder() | filterTransactionsByDescriptionPipe:
+        transactionsSearch(); track $index) {
 
         <div class="transaction transaction-{{ transaction.type }}">
             <p class="transaction__label">{{ transaction.type }}</p>

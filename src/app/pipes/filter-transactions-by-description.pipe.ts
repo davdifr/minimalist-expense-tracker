@@ -2,10 +2,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { FinancialTransaction } from '../models/transactions.models';
 
 @Pipe({
-    name: 'search',
+    name: 'filterTransactionsByDescriptionPipe',
     standalone: true,
 })
-export class SearchPipe implements PipeTransform {
+export class FilterTransactionsByDescriptionPipe implements PipeTransform {
     transform(
         list: FinancialTransaction[],
         text: string
