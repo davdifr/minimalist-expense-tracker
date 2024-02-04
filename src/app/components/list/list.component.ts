@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, input } from '@angular/core';
 import { FinancialTransaction } from '../../models/transactions.models';
 import { CurrencyPipe } from '@angular/common';
-import { TransactionTypeFilterPipe } from '../../pipes/transaction-type-filter';
+import { FilterTransactionsByTypePipe } from '../../pipes/transaction-type-filter';
 import { TransactionType } from '../../models/transactions.enums';
 import { Order } from '../../models/orders.enum';
 import { SortTransactionsByAmountPipe } from '../../pipes/sort-transactions-by-amount.pipe';
@@ -12,15 +12,16 @@ import { FilterTransactionsByDescriptionPipe } from '../../pipes/filter-transact
     standalone: true,
     imports: [
         CurrencyPipe,
-        TransactionTypeFilterPipe,
+        FilterTransactionsByTypePipe,
         SortTransactionsByAmountPipe,
         FilterTransactionsByDescriptionPipe,
     ],
     template: `
         @for (transaction of transactionsList().reverse() |
-        transactionTypeFilter: transactionsFilter() | sortTransactionsByAmount:
-        transactionsOrder() | filterTransactionsByDescriptionPipe:
-        transactionsSearch(); track $index) {
+        filterTransactionsByTypePipe: transactionsFilter() |
+        sortTransactionsByAmount: transactionsOrder() |
+        filterTransactionsByDescriptionPipe: transactionsSearch(); track $index)
+        {
 
         <div class="transaction transaction-{{ transaction.type }}">
             <p class="transaction__label">{{ transaction.type }}</p>

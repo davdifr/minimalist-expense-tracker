@@ -3,10 +3,10 @@ import { FinancialTransaction } from '../models/transactions.models';
 import { TransactionType } from '../models/transactions.enums';
 
 @Pipe({
-    name: 'transactionTypeFilter',
+    name: 'filterTransactionsByTypePipe',
     standalone: true,
 })
-export class TransactionTypeFilterPipe implements PipeTransform {
+export class FilterTransactionsByTypePipe implements PipeTransform {
     transform(
         list: FinancialTransaction[],
         type: TransactionType | null
