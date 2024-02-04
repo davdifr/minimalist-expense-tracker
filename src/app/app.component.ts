@@ -7,10 +7,9 @@ import { IndexedDBService } from './services/indexed-db.service';
     selector: 'app-root',
     standalone: true,
     imports: [CommonModule, RouterOutlet],
-    templateUrl: './app.component.html',
+    template: `<router-outlet />`,
 })
 export class AppComponent {
     #indexedDB = inject(IndexedDBService);
-
     title = 'minimalist-expense-tracker';
 }
