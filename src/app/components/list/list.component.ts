@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output, input } from '@angular/core';
+import { Component, EventEmitter, Output, input } from '@angular/core';
 import { FinancialTransaction } from '../../models/transactions.models';
 import { CurrencyPipe } from '@angular/common';
-import { FilterTransactionsByTypePipe } from '../../pipes/transaction-type-filter';
+import { FilterTransactionsByTypePipe } from '../../pipes/filter-transactions-by-type.pipe';
 import { TransactionType } from '../../models/transactions.enums';
 import { Order } from '../../models/orders.enum';
 import { SortTransactionsByAmountPipe } from '../../pipes/sort-transactions-by-amount.pipe';
