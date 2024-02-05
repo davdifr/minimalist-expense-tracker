@@ -1,9 +1,9 @@
 export enum TransactionType {
-    Income = 'income',
-    Outcome = 'outcome',
+    INCOME = 'income',
+    OUTCOME = 'outcome',
 }
 
 export enum TransactionOperation {
-    Add = 'add',
-    Remove = 'remove',
+    ADD = 'add',
+    REMOVE = 'remove',
 }

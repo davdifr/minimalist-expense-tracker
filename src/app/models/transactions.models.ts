@@ -8,12 +8,12 @@ export interface FinancialItemBase {
 }
 
 export interface IncomeTransaction extends FinancialItemBase {
-    type: TransactionType.Income;
+    type: TransactionType.INCOME;
     category?: string;
 }
 
 export interface OutcomeTransaction extends FinancialItemBase {
-    type: TransactionType.Outcome;
+    type: TransactionType.OUTCOME;
     category?: string;
 }
 

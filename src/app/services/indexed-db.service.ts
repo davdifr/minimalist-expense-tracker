@@ -135,7 +135,7 @@ export class IndexedDBService {
                 const transactions = request.result;
                 const totals = transactions.reduce(
                     (acc, transaction) => {
-                        if (transaction.type === TransactionType.Income) {
+                        if (transaction.type === TransactionType.INCOME) {
                             acc.income += transaction.amount;
                         } else {
                             acc.outcome += transaction.amount;

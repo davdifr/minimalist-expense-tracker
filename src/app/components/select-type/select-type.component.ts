@@ -18,8 +18,8 @@ import { TransactionType } from '../../models/transactions.enums';
             (change)="onTypeChange(selectedType)"
         >
             <option [ngValue]="null">All</option>
-            <option [value]="transactionTypes.Income">Income</option>
-            <option [value]="transactionTypes.Outcome">Outcome</option>
+            <option [value]="transactionTypes.INCOME">Income</option>
+            <option [value]="transactionTypes.OUTCOME">Outcome</option>
         </select>
     `,
 })

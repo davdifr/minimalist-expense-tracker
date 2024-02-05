@@ -28,7 +28,7 @@ export class FormComponent {
             amount: [0.01, [Validators.required, Validators.min(0.01)]],
             date: [this.#formattedDate, Validators.required],
             description: [],
-            type: [TransactionType.Outcome, Validators.required],
+            type: [TransactionType.OUTCOME, Validators.required],
             // category: [],
         });
     }
@@ -38,7 +38,7 @@ export class FormComponent {
         this.form.patchValue({
             amount: 0.01,
             date: this.#formattedDate,
-            type: TransactionType.Outcome,
+            type: TransactionType.OUTCOME,
         });
     }
 

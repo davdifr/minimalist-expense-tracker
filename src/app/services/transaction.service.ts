@@ -1,4 +1,4 @@
-import { Injectable, OnInit, computed, inject, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import {
     FinancialTransaction,
     TransactionIOData,
@@ -28,11 +28,11 @@ export class TransactionService {
     netTotal = computed(() => this.totalIncome() - this.totalOutcome());
 
     currentMonthTotalIncome = computed(() =>
-        this.calculateCurrentMonthTotalByType(TransactionType.Income)
+        this.calculateCurrentMonthTotalByType(TransactionType.INCOME)
     );
 
     currentMonthTotalOutcome = computed(() =>
-        this.calculateCurrentMonthTotalByType(TransactionType.Outcome)
+        this.calculateCurrentMonthTotalByType(TransactionType.OUTCOME)
     );
 
     constructor() {
@@ -52,7 +52,7 @@ export class TransactionService {
         this.updateTotals(
             transaction.type,
             transaction.amount,
-            TransactionOperation.Add
+            TransactionOperation.ADD
         );
 
         this.#indexedDB.addTransaction(transaction);
@@ -66,7 +66,7 @@ export class TransactionService {
         this.updateTotals(
             transaction.type,
             transaction.amount,
-            TransactionOperation.Remove
+            TransactionOperation.REMOVE
         );
 
         this.#indexedDB.deleteTransaction(transaction.id);
@@ -137,12 +137,12 @@ export class TransactionService {
         operation: TransactionOperation
     ) {
         const totalUpdates = {
-            [TransactionType.Income]: this.totalIncome,
-            [TransactionType.Outcome]: this.totalOutcome,
+            [TransactionType.INCOME]: this.totalIncome,
+            [TransactionType.OUTCOME]: this.totalOutcome,
         };
 
         totalUpdates[transactionType].update((currentTotal) =>
-            operation === TransactionOperation.Add
+            operation === TransactionOperation.ADD
                 ? currentTotal + transactionAmount
                 : currentTotal - transactionAmount
         );

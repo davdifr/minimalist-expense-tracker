@@ -3,7 +3,7 @@ import { TransactionService } from '../../services/transaction.service';
 import { SummaryComponent } from '../../components/summary/summary.component';
 import { FormComponent } from '../../components/form/form.component';
 import ListComponent from '../../components/list/list.component';
-import ExportComponent from '../../components/export/export.component';
+import ExportComponent from '../../components/export-transactions-button/export-transactions-button.component';
 import { ImportComponent } from '../../components/import/import.component';
 import { SelectTypeComponent } from '../../components/select-type/select-type.component';
 import { SelectOrderComponent } from '../../components/select-order/select-order.component';

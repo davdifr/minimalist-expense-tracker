@@ -5,7 +5,7 @@ import {
 } from '../../models/transactions.models';
 
 @Component({
-    selector: 'app-export',
+    selector: 'export-transactions-button',
     standalone: true,
     template: `
         <button
@@ -30,7 +30,7 @@ import {
         </button>
     `,
 })
-export default class ExportComponent {
+export default class ExportTransactionsButtonComponent {
     transactionsList = input.required<FinancialTransaction[]>();
     totalIncome = input.required<number>();
     totalOutcome = input.required<number>();
