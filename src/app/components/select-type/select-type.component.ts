@@ -1,10 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Output,
-    ViewEncapsulation,
-    input,
-} from '@angular/core';
+import { Component, EventEmitter, Output, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TransactionType } from '../../models/transactions.enums';
 

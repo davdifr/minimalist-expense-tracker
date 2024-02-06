@@ -13,7 +13,7 @@
                         [totalIncome]="transactionService.totalIncome()"
                         [totalOutcome]="transactionService.totalOutcome()"
                     />
-                    <app-import
+                    <import-transactions-button
                         (transactionsUploaded)="
                             transactionService.loadTransactionsAndSetTotals(
                                 $event

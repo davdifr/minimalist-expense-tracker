@@ -3,20 +3,20 @@ import { TransactionService } from '../../services/transaction.service';
 import { SummaryComponent } from '../../components/summary/summary.component';
 import { FormComponent } from '../../components/form/form.component';
 import ListComponent from '../../components/list/list.component';
-import ExportComponent from '../../components/export-transactions-button/export-transactions-button.component';
-import { ImportComponent } from '../../components/import/import.component';
 import { SelectTypeComponent } from '../../components/select-type/select-type.component';
 import { SelectOrderComponent } from '../../components/select-order/select-order.component';
 import { SearchComponent } from '../../components/search/search.component';
 import { RemainingExpenseCalculatorComponent } from '../../components/remaining-expense-calculator/remaining-expense-calculator.component';
+import ExportTransactionsButtonComponent from '../../components/export-transactions-button/export-transactions-button.component';
+import { ImportTransactionsButtonComponent } from '../../components/import-transactions-button/import-transactions-button.component';
 
 @Component({
     selector: 'app-main',
     standalone: true,
     imports: [
         SummaryComponent,
-        ExportComponent,
-        ImportComponent,
+        ExportTransactionsButtonComponent,
+        ImportTransactionsButtonComponent,
         RemainingExpenseCalculatorComponent,
         FormComponent,
         ListComponent,
