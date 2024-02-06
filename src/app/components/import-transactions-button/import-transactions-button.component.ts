@@ -34,7 +34,7 @@ import {
             Import
         </button>
     `,
-    styleUrls: ['./import.component.css'],
+    styleUrls: ['./import-transactions-button.component.css'],
 })
 export class ImportTransactionsButtonComponent {
     @Output() transactionsUploaded = new EventEmitter<TransactionIOData>();

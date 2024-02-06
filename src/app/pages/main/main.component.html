@@ -46,8 +46,8 @@
     <section id="section__transaction">
         <div class="container">
             <h2>Add transaction</h2>
-            <app-form
-                (transaction)="transactionService.addTransaction($event)"
+            <transaction-input-form
+                (transactionCreated)="transactionService.addTransaction($event)"
             />
             <form class="filters">
                 <h3>Filter</h3>

@@ -10,41 +10,47 @@ import {
 import { TransactionType } from '../../models/transactions.enums';
 
 @Component({
-    selector: 'app-form',
+    selector: 'transaction-input-form',
     standalone: true,
     imports: [FormsModule, ReactiveFormsModule],
-    templateUrl: './form.component.html',
+    templateUrl: './transaction-input-form.component.html',
 })
-export class FormComponent {
-    @Output() transaction = new EventEmitter<FinancialTransaction>();
-
+export class TransactionInputFormComponent {
+    @Output() transactionCreated = new EventEmitter<FinancialTransaction>();
     #fb = inject(FormBuilder);
+    transactionForm!: FormGroup;
+
+    // Formatted date in ISO 8601 format (YYYY-MM-DD)
     #formattedDate = new Date().toISOString().slice(0, 10);
 
-    form: FormGroup;
+    readonly initialFormValues = {
+        amount: 0.01,
+        date: this.#formattedDate,
+        type: TransactionType.OUTCOME,
+    };
 
     constructor() {
-        this.form = this.#fb.group({
+        this.initializeForm();
+    }
+
+    private initializeForm(): void {
+        this.transactionForm = this.#fb.group({
             amount: [0.01, [Validators.required, Validators.min(0.01)]],
             date: [this.#formattedDate, Validators.required],
             description: [],
             type: [TransactionType.OUTCOME, Validators.required],
-            // category: [],
         });
     }
 
-    private resetAndInitializeDateInForm(): void {
-        this.form.reset();
-        this.form.patchValue({
-            amount: 0.01,
-            date: this.#formattedDate,
-            type: TransactionType.OUTCOME,
-        });
+    private resetForm(): void {
+        this.transactionForm.reset();
+        this.transactionForm.patchValue(this.initialFormValues);
     }
 
-    private createAndEmitNewTransaction(): void {
-        if (this.form.invalid) return;
-        const { amount, date, description, type } = this.form.value;
+    private emitTransaction(): void {
+        if (this.transactionForm.invalid) return;
+
+        const { amount, date, description, type } = this.transactionForm.value;
         const newTransaction = {
             id: Date.now().toString(),
             amount,
@@ -53,11 +59,11 @@ export class FormComponent {
             type,
         };
 
-        this.transaction.emit(newTransaction);
+        this.transactionCreated.emit(newTransaction);
     }
 
     onSubmit(): void {
-        this.createAndEmitNewTransaction();
-        this.resetAndInitializeDateInForm();
+        this.emitTransaction();
+        this.resetForm();
     }
 }

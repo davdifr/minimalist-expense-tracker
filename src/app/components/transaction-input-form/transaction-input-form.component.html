@@ -1,4 +1,8 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="insert__transaction">
+<form
+    [formGroup]="transactionForm"
+    (ngSubmit)="onSubmit()"
+    class="insert__transaction"
+>
     <div class="row">
         <input
             id="amount"
@@ -22,7 +26,7 @@
         />
         <button
             type="submit"
-            [disabled]="form.invalid"
+            [disabled]="transactionForm.invalid"
             class="btn btn-primary item"
         >
             <svg

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { TransactionService } from '../../services/transaction.service';
 import { SummaryComponent } from '../../components/summary/summary.component';
-import { FormComponent } from '../../components/form/form.component';
+import { TransactionInputFormComponent } from '../../components/transaction-input-form/transaction-input-form.component';
 import ListComponent from '../../components/list/list.component';
 import { SelectTypeComponent } from '../../components/select-type/select-type.component';
 import { SelectOrderComponent } from '../../components/select-order/select-order.component';
@@ -18,7 +18,7 @@ import { ImportTransactionsButtonComponent } from '../../components/import-trans
         ExportTransactionsButtonComponent,
         ImportTransactionsButtonComponent,
         RemainingExpenseCalculatorComponent,
-        FormComponent,
+        TransactionInputFormComponent,
         ListComponent,
         SelectTypeComponent,
         SelectOrderComponent,
