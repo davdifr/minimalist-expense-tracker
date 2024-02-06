@@ -8,7 +8,7 @@ import { SortTransactionsByAmountPipe } from '../../pipes/sort-transactions-by-a
 import { FilterTransactionsByDescriptionPipe } from '../../pipes/filter-transactions-by-description.pipe';
 
 @Component({
-    selector: 'app-list',
+    selector: 'transactions-list',
     standalone: true,
     imports: [
         CurrencyPipe,
@@ -67,7 +67,7 @@ import { FilterTransactionsByDescriptionPipe } from '../../pipes/filter-transact
         }
     `,
 })
-export default class ListComponent {
+export default class TransactionsListComponent {
     @Output() transactionToDelete = new EventEmitter<FinancialTransaction>();
 
     transactionsList = input.required<FinancialTransaction[]>();
