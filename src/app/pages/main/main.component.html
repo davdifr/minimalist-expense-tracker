@@ -52,7 +52,7 @@
             <form class="filters">
                 <h3>Filter</h3>
                 <div class="row">
-                    <app-select-type
+                    <transaction-type-selector
                         (typeSelected)="
                             transactionService.transactionsListFilteredByType(
                                 $event
@@ -62,7 +62,7 @@
                             transactionService.transactionsTypeFilter()
                         "
                     />
-                    <app-select-order
+                    <sorting-preference-selector
                         (orderSelected)="
                             transactionService.sortTransactionsByOrder($event)
                         "
