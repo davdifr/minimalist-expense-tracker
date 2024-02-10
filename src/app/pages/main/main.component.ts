@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { TransactionService } from '../../services/transaction.service';
-import { SummaryComponent } from '../../components/summary/summary.component';
 import { TransactionInputFormComponent } from '../../components/transaction-input-form/transaction-input-form.component';
 import { SelectTypeComponent } from '../../components/select-type/select-type.component';
 import { SelectOrderComponent } from '../../components/select-order/select-order.component';
@@ -9,12 +8,13 @@ import { RemainingExpenseCalculatorComponent } from '../../components/remaining-
 import ExportTransactionsButtonComponent from '../../components/export-transactions-button/export-transactions-button.component';
 import { ImportTransactionsButtonComponent } from '../../components/import-transactions-button/import-transactions-button.component';
 import TransactionsListComponent from '../../components/transactions-list/transactions-list.component';
+import { EconomicOverviewComponent } from '../../components/summary/economic-overview.component';
 
 @Component({
     selector: 'app-main',
     standalone: true,
     imports: [
-        SummaryComponent,
+        EconomicOverviewComponent,
         ExportTransactionsButtonComponent,
         ImportTransactionsButtonComponent,
         RemainingExpenseCalculatorComponent,
