@@ -49,11 +49,7 @@ export class TransactionService {
             transaction,
         ]);
 
-        this.updateTotals(
-            transaction.type,
-            transaction.amount,
-            TransactionOperation.ADD
-        );
+        this.updateTotals(transaction, TransactionOperation.ADD);
 
         this.#indexedDB.addTransaction(transaction);
     }
@@ -63,11 +59,7 @@ export class TransactionService {
             existingTransactions.filter((t) => t.id !== transaction.id)
         );
 
-        this.updateTotals(
-            transaction.type,
-            transaction.amount,
-            TransactionOperation.REMOVE
-        );
+        this.updateTotals(transaction, TransactionOperation.REMOVE);
 
         this.#indexedDB.deleteTransaction(transaction.id);
     }
@@ -132,8 +124,7 @@ export class TransactionService {
     }
 
     private updateTotals(
-        transactionType: TransactionType,
-        transactionAmount: number,
+        transaction: FinancialTransaction,
         operation: TransactionOperation
     ) {
         const totalUpdates = {
@@ -141,10 +132,10 @@ export class TransactionService {
             [TransactionType.OUTCOME]: this.totalOutcome,
         };
 
-        totalUpdates[transactionType].update((currentTotal) =>
+        totalUpdates[transaction.type].update((currentTotal) =>
             operation === TransactionOperation.ADD
-                ? currentTotal + transactionAmount
-                : currentTotal - transactionAmount
+                ? currentTotal + transaction.amount
+                : currentTotal - transaction.amount
         );
     }
 }
