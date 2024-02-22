@@ -41,6 +41,11 @@ export class TransactionService {
         this.#indexedDB.getTransactions().then((transactions) => {
             this.transactionsList.set(transactions);
         });
+
+        this.#indexedDB.getTotals().then((totals) => {
+            this.totalIncome.set(totals.income);
+            this.totalOutcome.set(totals.outcome);
+        });
     }
 
     addTransaction(transaction: FinancialTransaction) {
