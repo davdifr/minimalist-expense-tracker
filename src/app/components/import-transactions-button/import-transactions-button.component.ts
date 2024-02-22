@@ -5,7 +5,7 @@ import {
 } from '../../models/transactions.models';
 
 @Component({
-    selector: 'app-import',
+    selector: 'import-transactions-button',
     standalone: true,
     template: `
         <input
@@ -34,9 +34,9 @@ import {
             Import
         </button>
     `,
-    styleUrls: ['./import.component.css'],
+    styleUrls: ['./import-transactions-button.component.css'],
 })
-export class ImportComponent {
+export class ImportTransactionsButtonComponent {
     @Output() transactionsUploaded = new EventEmitter<TransactionIOData>();
 
     onFileSelected(event: any): void {

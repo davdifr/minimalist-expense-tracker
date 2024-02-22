@@ -13,7 +13,7 @@
                         [totalIncome]="transactionService.totalIncome()"
                         [totalOutcome]="transactionService.totalOutcome()"
                     />
-                    <app-import
+                    <import-transactions-button
                         (transactionsUploaded)="
                             transactionService.loadTransactionsAndSetTotals(
                                 $event
@@ -27,13 +27,13 @@
 
     <section id="section__dashboard">
         <div class="container">
-            <app-summary
+            <economic-overview
                 [totalIncome]="transactionService.totalIncome()"
                 [totalOutcome]="transactionService.totalOutcome()"
                 [netTotal]="transactionService.netTotal()"
             />
 
-            <app-remaining-expense-calculator
+            <remaining-expense-calculator
                 [currentMonthTotalIncome]="
                     transactionService.currentMonthTotalIncome()
                 "
@@ -46,13 +46,13 @@
     <section id="section__transaction">
         <div class="container">
             <h2>Add transaction</h2>
-            <app-form
-                (transaction)="transactionService.addTransaction($event)"
+            <transaction-input-form
+                (transactionCreated)="transactionService.addTransaction($event)"
             />
             <form class="filters">
                 <h3>Filter</h3>
                 <div class="row">
-                    <app-select-type
+                    <transaction-type-selector
                         (typeSelected)="
                             transactionService.transactionsListFilteredByType(
                                 $event
@@ -62,7 +62,7 @@
                             transactionService.transactionsTypeFilter()
                         "
                     />
-                    <app-select-order
+                    <sorting-preference-selector
                         (orderSelected)="
                             transactionService.sortTransactionsByOrder($event)
                         "
@@ -70,7 +70,7 @@
                             transactionService.transactionsOrder()
                         "
                     />
-                    <app-search
+                    <transaction-search
                         (searchChange)="
                             transactionService.transactionsListFilteredBySearch(
                                 $event
@@ -81,7 +81,7 @@
             </form>
 
             <div class="transactions">
-                <app-list
+                <transactions-list
                     [transactionsList]="transactionService.transactionsList()"
                     [transactionsFilter]="
                         transactionService.transactionsTypeFilter()

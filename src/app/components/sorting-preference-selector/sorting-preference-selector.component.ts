@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Output, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TransactionType } from '../../models/transactions.enums';
 import { Order } from '../../models/orders.enum';
 
 @Component({
-    selector: 'app-select-order',
+    selector: 'sorting-preference-selector',
     standalone: true,
     imports: [FormsModule],
     template: `
@@ -18,7 +17,7 @@ import { Order } from '../../models/orders.enum';
         </select>
     `,
 })
-export class SelectOrderComponent {
+export class SortingPreferenceSelectorComponent {
     @Output() orderSelected = new EventEmitter<Order | null>();
     transactionsOrder = input<Order | null>(null);
 

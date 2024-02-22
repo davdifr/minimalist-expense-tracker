@@ -1,28 +1,28 @@
 import { Component, inject } from '@angular/core';
 import { TransactionService } from '../../services/transaction.service';
-import { SummaryComponent } from '../../components/summary/summary.component';
-import { FormComponent } from '../../components/form/form.component';
-import ListComponent from '../../components/list/list.component';
-import ExportComponent from '../../components/export-transactions-button/export-transactions-button.component';
-import { ImportComponent } from '../../components/import/import.component';
-import { SelectTypeComponent } from '../../components/select-type/select-type.component';
-import { SelectOrderComponent } from '../../components/select-order/select-order.component';
-import { SearchComponent } from '../../components/search/search.component';
+import { TransactionInputFormComponent } from '../../components/transaction-input-form/transaction-input-form.component';
+import { TransactionSearchComponent } from '../../components/transaction-search/transaction-search.component';
 import { RemainingExpenseCalculatorComponent } from '../../components/remaining-expense-calculator/remaining-expense-calculator.component';
+import ExportTransactionsButtonComponent from '../../components/export-transactions-button/export-transactions-button.component';
+import { ImportTransactionsButtonComponent } from '../../components/import-transactions-button/import-transactions-button.component';
+import TransactionsListComponent from '../../components/transactions-list/transactions-list.component';
+import { EconomicOverviewComponent } from '../../components/economic-overview/economic-overview.component';
+import { SortingPreferenceSelectorComponent } from '../../components/sorting-preference-selector/sorting-preference-selector.component';
+import { TransactionTypeSelectorComponent } from '../../components/transaction-type-selector/transaction-type-selector';
 
 @Component({
     selector: 'app-main',
     standalone: true,
     imports: [
-        SummaryComponent,
-        ExportComponent,
-        ImportComponent,
+        EconomicOverviewComponent,
+        ExportTransactionsButtonComponent,
+        ImportTransactionsButtonComponent,
         RemainingExpenseCalculatorComponent,
-        FormComponent,
-        ListComponent,
-        SelectTypeComponent,
-        SelectOrderComponent,
-        SearchComponent,
+        TransactionInputFormComponent,
+        TransactionsListComponent,
+        TransactionTypeSelectorComponent,
+        SortingPreferenceSelectorComponent,
+        TransactionSearchComponent,
     ],
     templateUrl: './main.component.html',
 })

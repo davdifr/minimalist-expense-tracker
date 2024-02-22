@@ -2,7 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import { Component, input } from '@angular/core';
 
 @Component({
-    selector: 'app-summary',
+    selector: 'economic-overview',
     standalone: true,
     imports: [CurrencyPipe],
     template: `
@@ -24,7 +24,7 @@ import { Component, input } from '@angular/core';
         </div>
     `,
 })
-export class SummaryComponent {
+export class EconomicOverviewComponent {
     totalIncome = input<number>();
     totalOutcome = input<number>();
     netTotal = input<number>();

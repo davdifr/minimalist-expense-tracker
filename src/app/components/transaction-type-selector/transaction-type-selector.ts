@@ -1,15 +1,9 @@
-import {
-    Component,
-    EventEmitter,
-    Output,
-    ViewEncapsulation,
-    input,
-} from '@angular/core';
+import { Component, EventEmitter, Output, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TransactionType } from '../../models/transactions.enums';
 
 @Component({
-    selector: 'app-select-type',
+    selector: 'transaction-type-selector',
     standalone: true,
     imports: [FormsModule],
     template: `
@@ -23,7 +17,7 @@ import { TransactionType } from '../../models/transactions.enums';
         </select>
     `,
 })
-export class SelectTypeComponent {
+export class TransactionTypeSelectorComponent {
     @Output() typeSelected = new EventEmitter<TransactionType | null>();
     transactionsFilter = input<TransactionType | null>(null);
 
